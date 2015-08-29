@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Auto Stop</title>
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- bootstrap 3.0.2 -->
+        <link href="{{asset('bundles/autostop/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+        <!-- font Awesome -->
+        <link href="{{asset('bundles/autostop/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="{{asset('bundles/autostop/css/ionicons.min.css')}}" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="{{asset('bundles/autostop/css/AdminLTE.css')}}" rel="stylesheet" type="text/css" />
+        <!--Google API-->
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;signed_in=true&amp;libraries=places,geometry&amp;region=ec&amp;language=es&amp;sensor=false"></script>
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css" />
+    </head>
+    <body class="skin-blue">
+        <!-- header logo: style can be found in header.less -->
+        <header class="header">
+            <a href="{{path('daw_autostop_recargar')}}" class="logo">
+                <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                AutoStop
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages: style can be found in dropdown.less-->
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope"></i>
+                                <span class="label label-success">4</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 4 messages</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li><!-- start message -->
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="img/avatar3.png" class="img-circle" alt="User Image"/>
+                                                </div>
+                                                <h4>
+                                                    Support Team
+                                                    <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li><!-- end message -->
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="img/avatar2.png" class="img-circle" alt="user image"/>
+                                                </div>
+                                                <h4>
+                                                    AdminLTE Design Team
+                                                    <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="img/avatar.png" class="img-circle" alt="user image"/>
+                                                </div>
+                                                <h4>
+                                                    Developers
+                                                    <small><i class="fa fa-clock-o"></i> Today</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="img/avatar2.png" class="img-circle" alt="user image"/>
+                                                </div>
+                                                <h4>
+                                                    Sales Department
+                                                    <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <img src="img/avatar.png" class="img-circle" alt="user image"/>
+                                                </div>
+                                                <h4>
+                                                    Reviewers
+                                                    <small><i class="fa fa-clock-o"></i> 2 days</small>
+                                                </h4>
+                                                <p>Why not buy a new awesome theme?</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">See All Messages</a></li>
+                            </ul>
+                        </li>
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-warning"></i>
+                                <span class="label label-warning">10</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 10 notifications</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+										<li>
+                                            <a href="#" id="rutaNotificacion">
+                                                <i class="ion ion-model-s danger"></i> Maria ha creado una nueva ruta
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="ion ion-ios7-people info"></i> 5 new members joined today
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-warning danger"></i> Very long description here that may not fit into the page and may cause design problems
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-users warning"></i> 5 new members joined
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">
+                                                <i class="ion ion-ios7-person danger"></i> You changed your username
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                        </li>
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span>Cristian <i class="caret"></i></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header bg-light-blue">
+                                    <img {%if sexo == 1 %}src="{{asset('bundles/autostop/img/male.jpg')}}"{%else %}src="{{asset('bundles/autostop/img/female.jpg')}}"{%endif%} class="img-circle" alt="User Image" />
+                                    <p>
+                                        {{nombre}} {{apellido}}
+                                    </p>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="{{path('daw_autostop_logout')}}" class="btn btn-default btn-flat">Cerrar Sesión</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="wrapper row-offcanvas row-offcanvas-left">
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="left-side sidebar-offcanvas">
+                <!-- sidebar: style can be found in sidebar.less -->
+                <section class="sidebar">
+                    <!-- Sidebar user panel -->
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img {%if sexo == 1 %}src="{{asset('bundles/autostop/img/male.jpg')}}"{%else %}src="{{asset('bundles/autostop/img/female.jpg')}}"{%endif%} class="img-circle" alt="User Image" />
+                        </div>
+                        <div class="pull-left info">
+                            <p>Hola, {{nombre}}</p>
+
+                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        </div>
+                    </div>
+                    <!-- search form -->
+                    <form action="#" method="get" class="sidebar-form">
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                            <span class="input-group-btn">
+                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    </form>
+                    <!-- /.search form -->
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu">
+                        <li class="active">
+                            <a href="{{path('daw_autostop_recargar')}}">
+                                <i class="fa fa-globe"></i> <span>Inicio</span>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="perfil.html">
+                                <i class="fa fa-user"></i> <span>Perfil</span>
+                            </a>
+                        </li>
+                        <li id="crearRuta" class="active">
+                            <a href="#">
+                                <i class="fa fa-road"></i> <span>Crear ruta</span>
+                            </a>
+                            <div class="rutaReset" style="display:none;margin:5px 0 5px 25px;">
+                                <input type="button" class="btn btn-info btnResetRuta" value="Reset" onclick="reset()"/>
+                            </div>
+                        </li>
+                        <li class="active">
+                            <a href="#">
+                                <i class="fa fa-road"></i>
+                                <span data-toggle="modal" data-target="#modalRuta" >Historial de rutas</span>
+                            </a>
+                            <div class="modal fade" id="modalRuta" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" >
+                                        <div style="background-color:#367fa9;" class="modal-header">
+                                            <button style="background-color:#367fa9;" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h2 style="color:white;background-color:#367fa9;font-family:'Kaushan Script', cursive;">Historial de Rutas</h2>
+                                        </div>
+                                        <div class="modal-body" style="overflow-y: auto; height: 300px;">
+                                            <div>
+                                                <h4><b>Evelyn Gonzalez</b></h4>
+                                                <p><b>Inicio de Ruta: </b> Alborada </p>
+                                                <p><b>Destino de Ruta: </b>ESPOL </p>
+                                                <p><b>Estado de Solicitud: </b> <strong>Pendiente</strong> </p><br/>
+                                            </div>
+                                            <div>
+                                                <h4><b>Cristhian Pisco</b> </h4>
+                                                <p><b>Inicio de Ruta: </b> Samanes </p>
+                                                <p><b>Destino de Ruta: </b>ESPOL </p>
+                                                <p><b>Estado de Solicitud: </b> <strong>Cancelada</strong> </p><br/>
+                                            </div>
+                                            <div>
+                                                <h4><b>Erick Rocafuerte</b> </h4>
+                                                <p><b>Inicio de Ruta: </b>  Garzota </p>
+                                                <p><b>Destino de Ruta: </b> ESPOL </p>
+                                                <p><b>Estado de Solicitud: </b> <strong>Aceptada</strong> </p><br/>
+                                            </div>
+
+                                            <div>
+                                                <h4><b>Mariuxi Vaccaro</b> </h4>
+                                                <p><b>Inicio de Ruta: </b> Urdesa </p>
+                                                <p><b>Destino de Ruta: </b> ESPOL </p>
+                                                <p><b>Estado de Solicitud: </b> <strong>Aceptada</strong> </p><br/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </li>
+                        <li class="active">
+                            <a href="#">
+                                <i class="fa fa-user"></i> <span data-toggle="modal" data-target="#modalContacto">Contactenos</span>
+                            </a>
+                            <div class="modal fade" id="modalContacto" tabindex="-1" aria-hidden="true">
+                                <form class="form-horizontal" method="POST">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color:#367fa9;">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h2 style="font-family:'Kaushan Script', cursive; color:white;">Cont&aacute;ctenos</h2>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <div class="col-md-10 col-md-offset-1">
+                                                        <input id="fname" name="name" type="text" placeholder="Nombres" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-10 col-md-offset-1">
+                                                        <input id="lname" name="name" type="text" placeholder="Apellidos" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-md-10 col-md-offset-1">
+                                                        <input id="email" name="email" type="text" placeholder="Email" class="form-control">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-md-10 col-md-offset-1">
+                                                        <textarea class="form-control" id="message" name="message" placeholder="Ingrese el mensaje que nosotros le responderemos..." rows="7"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="form-group">
+                                                    <div class="col-md-12 text-center">
+                                                        <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+                <!-- /.sidebar -->
+            </aside>
+
+            <!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                            <div class="map_container">
+                                <div id="map-canvas"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside><!-- /.right-side -->
+        </div><!-- ./wrapper -->
+        <footer class="page-footer">
+            <p class="footer-web">Desarrollo de Aplicaciones Web</p>
+            <a class="desarrolladores" href="#" data-toggle="modal" data-target="#modalFooter">Desarrolladores</a><br/>
+            <p class="copyright">&copy; 2015 AutoStop Todos los derechos reservados. </p>
+
+        </footer>
+        <div class="modal fade" id="modalFooter" tabindex="-1" aria-hidden="true">
+            <form class="form-horizontal" method="post">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="background-color:#367fa9;">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h2 style="font-family:'Kaushan Script', cursive;color:white;">Desarrolladores</h2>
+                        </div>
+                        <div class="modal-body" style="overflow-y: auto; height: 300px;">
+                            <div class="row">
+                                <div class="col-sm-3 col-xs-12 col-md-3 col-lg-4">
+                                                <img src="img/avatar3.png" style="width:50px; display: block;margin-left: auto;margin-right: auto;" alt="avatar">
+                                                <h5 style="text-align:center;">Evenlyn Gonzalez</h5>
+                                                <h6 style="text-align:center;">Ing. en Ciencias Computacionales</h6>
+                                </div>
+                                <div class="col-sm-3 col-xs-12 col-md-3 col-lg-4">
+                                                <img src="img/avatar04.png" style="width:50px; display: block;margin-left: auto;margin-right: auto;" alt="avatar">
+                                                <h5 style="text-align:center;">Cristian Pisco</h5>
+                                                <h6 style="text-align:center;">Ing. en Ciencias Computacionales</h6>
+                                </div>
+                                <div class="col-sm-3 col-xs-12 col-md-3 col-lg-4">
+                                                <img src="img/avatar.png" style="width:50px; display: block;margin-left: auto;margin-right: auto;" alt="avatar">
+                                                <h5 style="text-align:center;">MariaErick Rocafuerte</h5>
+                                                <h6 style="text-align:center;">Ing. en Ciencias Computacionales</h6>
+                                </div>
+                                <div class="col-sm-3 col-xs-12 col-md-3 col-lg-4">
+                                                <img src="img/avatar5.png" style="width:50px; display: block;margin-left: auto;margin-right: auto;" alt="avatar">
+                                                <h5 style="text-align:center;">Carlos Franco</h5>
+                                                <h6 style="text-align:center;">Ing. en Ciencias Computacionales</h6>
+                                </div>
+                                <div class="col-sm-3 col-xs-12 col-md-3 col-lg-4">
+                                                <img src="img/avatar2.png" style="width:50px; display: block;margin-left: auto;margin-right: auto;" alt="avatar">
+                                                <h5 style="text-align:center;">Maria Vaccaro</h5>
+                                                <h6 style="text-align:center;">Ing. en Ciencias Computacionales</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Nueva ruta</h4>
+                    </header>
+                    <div class="modal-body">
+                        <form id="formRuta">
+                            <div class="form-group">
+                                <label for="fechaa">Fecha</label>
+                                <input type="date" name="fecha" class="form-control" id="fechaa" placeholder="fecha" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="horaa">Hora</label>
+                                <input type="time" name="hora" class="form-control" id="horaa" placeholder="hora" required>
+                            </div>                          
+                            <div class="form-group">
+                                <label for="capacidadd">Capacidad</label>
+                                <input type="number" name="capacidad" class="form-control" id="capacidadd" placeholder="capacidad" required>
+                            </div> 
+                            <div class="form-group">
+                                <label for="costoo">Costo</label>
+                                <input type="number" name="costo" class="form-control" id="costoo" min = "0.00" value = "0.00" step="0.01" max="10.00" placeholder="costo" required>
+                            </div> 
+                            <button id="enviarRuta" type="submit" class="btn btn-default">Enviar</button>
+                        </form>
+                    </div>                    
+                </div>
+            </div>
+        </div>		
+		 <!-- jQuery 2.0.2 -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <!-- jQuery UI 1.10.3 -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<!-- Bootstrap -->
+        <script src="{{asset('bundles/autostop/js/bootstrap.min.js')}}" type="text/javascript"></script>
+        <!-- AdminLTE App -->
+        <script src="{{asset('bundles/autostop/js/AdminLTE/app.js')}}" type="text/javascript"></script>
+
+        <script src="{{asset('bundles/autostop/js/AdminLTE/dashboard.js')}}" type="text/javascript"></script>
+        <!--Funcion para recibir datos del formulario ruta-->
+        {#<script src="{{asset('bundles/autostop/js/rutaFormulario.js')}}" type="text/javascript"></script>#}
+        <!--<script src="js/googleAPI.js"></script>-->
+        <script src="{{asset('bundles/autostop/js/crearRuta2.js')}}"></script>
+        <script src="{{asset('bundles/autostop/js/rutaNotificacion.js')}}"></script>
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="autostopBundle\Entity\Ruta" table="ruta">
+    <indexes>
+      <index name="IDX_639C5FB2B9CB2147" columns="idEstudiante"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="estado" type="string" column="estado" length="255" nullable="false"/>
+    <field name="capacidad" type="integer" column="capacidad" nullable="false"/>
+    <field name="fechainicio" type="date" column="fechaInicio" nullable="false"/>
+    <field name="puntosx" type="string" column="puntosx" length="255" nullable="false"/>
+    <field name="puntosy" type="string" column="puntosy" length="255" nullable="false"/>
+    <field name="horainicio" type="time" column="horaInicio" nullable="false"/>
+    <field name="costo" type="float" column="costo" precision="10" scale="0" nullable="false"/>
+    <many-to-one field="idestudiante" target-entity="Estudiante">
+      <join-columns>
+        <join-column name="idEstudiante" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

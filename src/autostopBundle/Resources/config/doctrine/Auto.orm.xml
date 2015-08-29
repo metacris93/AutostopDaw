@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="autostopBundle\Entity\Auto" table="auto">
+    <unique-constraints>
+      <unique-constraint name="UNIQ_C6888AC4B9CB2147" columns="idEstudiante"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="marca" type="string" column="marca" length="15" nullable="false"/>
+    <field name="capacidad" type="integer" column="capacidad" nullable="false"/>
+    <field name="placa" type="string" column="placa" length="8" nullable="false"/>
+    <many-to-one field="idestudiante" target-entity="Estudiante">
+      <join-columns>
+        <join-column name="idEstudiante" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
